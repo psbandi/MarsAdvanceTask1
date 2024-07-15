@@ -1,21 +1,22 @@
 ﻿using MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewComponent;
 using MarsAdvancedTaskNUnitPart1.Utilities;
 using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader;
+using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 
 namespace MarsAdvancedTaskNUnitPart1.Tests
 {
-   
+
     public class BaseTest
     {
 
         protected IWebDriver driver;
         protected CommonDriver driverSetup;
         protected LoginPage loginPageObject;
-        protected EducationPage educationPageObject;
-        protected CertificationPage certificationPageObject;
+        protected LanguagePage languagePageObject;
+        //protected SkillsPage skillPageObject;
         protected List<LoginConfig> loginConfig;
         
         // Called once prior to executing any of the tests in a fixture
@@ -26,17 +27,18 @@ namespace MarsAdvancedTaskNUnitPart1.Tests
             AppConfig config = AppConfig.LoadConfig();
             driverSetup = new CommonDriver();
             driver = driverSetup.Initialize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Navigate().GoToUrl(config.url);
 
             // Initialize the page objects
             loginPageObject = new LoginPage(driver);
-            educationPageObject = new EducationPage(driver);
-            certificationPageObject = new CertificationPage(driver);
+            languagePageObject = new LanguagePage(driver);
+            //skillPageObject = new SkillsPage(driver);
 
             // Perform login
             loginConfig = LoginConfig.LoadConfig();
             loginPageObject.ClickSignIn();
-            Thread.Sleep(1000);
+            //Thread.Sleep(1000);
             loginPageObject.ValidLoginSteps(loginConfig[0].EmailAddress, loginConfig[0].Password);
         }
 

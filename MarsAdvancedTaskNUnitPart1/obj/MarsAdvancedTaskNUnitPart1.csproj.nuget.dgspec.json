@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lenovo\\Prasanna\\__TempBackup\\AdvancedTaskPart1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj": {}
+    "C:\\Users\\Lenovo\\Prasanna\\MarsAdvanceTask1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lenovo\\Prasanna\\__TempBackup\\AdvancedTaskPart1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj": {
+    "C:\\Users\\Lenovo\\Prasanna\\MarsAdvanceTask1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lenovo\\Prasanna\\__TempBackup\\AdvancedTaskPart1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj",
+        "projectUniqueName": "C:\\Users\\Lenovo\\Prasanna\\MarsAdvanceTask1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj",
         "projectName": "MarsAdvancedTaskNUnitPart1",
-        "projectPath": "C:\\Users\\Lenovo\\Prasanna\\__TempBackup\\AdvancedTaskPart1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj",
+        "projectPath": "C:\\Users\\Lenovo\\Prasanna\\MarsAdvanceTask1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj",
         "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lenovo\\Prasanna\\__TempBackup\\AdvancedTaskPart1\\MarsAdvancedTaskNUnitPart1\\obj\\",
+        "outputPath": "C:\\Users\\Lenovo\\Prasanna\\MarsAdvanceTask1\\MarsAdvancedTaskNUnitPart1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,7 +59,7 @@
             },
             "Microsoft.Extensions.Configuration.Binder": {
               "target": "Package",
-              "version": "[8.0.1, )"
+              "version": "[8.0.2, )"
             },
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
@@ -97,7 +97,7 @@
             },
             "System.Drawing.Common": {
               "target": "Package",
-              "version": "[8.0.6, )"
+              "version": "[8.0.7, )"
             }
           },
           "imports": [

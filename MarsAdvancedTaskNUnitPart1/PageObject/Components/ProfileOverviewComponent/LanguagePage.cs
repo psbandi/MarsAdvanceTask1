@@ -1,5 +1,8 @@
-﻿using MarsAdvancedTaskNUnitPart1.Utilities;
+﻿using MarsAdvancedTaskNUnitPart1.Models.ProfileOverviewModel;
+using MarsAdvancedTaskNUnitPart1.Utilities;
+using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 
 namespace MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewComponent
@@ -13,111 +16,215 @@ namespace MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewCompon
         }
 
         // Default Constructor
-        public LanguagePage() 
+        public LanguagePage() : base()
         {
             
         }
 
+
+        //Locators
+        By ProfileTabLocator => By.XPath("//section//a[@href='/Account/Profile']");
+        By LanguageTabLocator => By.XPath("//a[contains(text(),'Languages')]");
+        By AddNewButtonLocator => By.XPath("//*[@class='ui teal button ']");       
+        By LanguageTextboxLocator => By.XPath("//*[@placeholder='Add Language']");
+        By chooseLevelDropdownLocator => By.XPath("//*[@class='ui dropdown']");       
+        By AddButtonLocator => By.XPath("//input[@value='Add']");
+        By CancelButtonLocator => By.XPath("//input[@value='Cancel']");
+        By ToolTipMessageLocator => By.XPath("//*[@class='ns-box-inner']");
+        By EditLanguageTextboxLocator => By.XPath("//*[@placeholder='Add Language']");
+        By EditChooseLevelDropdownLocator => By.XPath("//*[@class='ui dropdown']");
+        By EditPencilIconDropdownLocator => By.XPath("//div[@id='account-profile-section']//form//table//tbody[2]/tr/td[3]/span[1]/i");
+        By UpdateButtonLocator => By.XPath("//input[@value='Update']");
+        By EditChooseLevelOptionLocator => By.XPath("//*[@value='\" + newLevel + \"']");
+        By LastDeleteIconLocator => By.XPath("//table[1]/tbody[last()]//i[@class='remove icon']");
+        By LanguageRowsLocator => By.XPath("//div[@data-tab='first']//table/tbody");
+
+
+
         // Web Elements
-
-        public IWebElement LanguageTab => driver.FindElement(By.XPath("//a[contains(text(),'Languages')]"));
-        public IWebElement AddNewButton => driver.FindElement(By.XPath("//*[@class='ui teal button ']"));
-        public IWebElement LanguageTextbox => driver.FindElement(By.XPath("//*[@placeholder='Add Language']"));
-        public IWebElement chooseLevelDropdown => driver.FindElement(By.XPath("//*[@class='ui dropdown']"));
-        public IWebElement chooseLevelOption => driver.FindElement(By.XPath("//*[@value='\" + Level + \"']"));
-        public IWebElement AddButton => driver.FindElement(By.XPath("//input[@value='Add']"));
-        public IWebElement CancelButton => driver.FindElement(By.XPath("//input[@value='Cancel']"));
-        public IWebElement ToolTipMessage => driver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
-        public IWebElement EditLanguageTextbox => driver.FindElement(By.XPath("//*[@placeholder='Add Language']"));
-        public IWebElement EditChooseLevelDropdown => driver.FindElement(By.XPath("//*[@class='ui dropdown']"));
-        public IWebElement EditPencilIcon => driver.FindElement(By.XPath("//div[@id='account-profile-section']//form//table//tbody[2]/tr/td[3]/span[1]/i"));
-        public IWebElement UpdateButton => driver.FindElement(By.XPath("//input[@value='Update']"));
-        public IWebElement EditChooseLevelOption => driver.FindElement(By.XPath("//*[@value='\" + newLevel + \"']"));
-        public IWebElement LastDeleteIcon => driver.FindElement(By.XPath("//table[1]/tbody[last()]//i[@class='remove icon']"));
-
-        public IList<IWebElement> LanguageRows => driver.FindElements(By.XPath("//div[@data-tab='first']//table/tbody"));
+        public IWebElement ProfileTab => driver.FindElement(ProfileTabLocator);
+        public IWebElement LanguageTab => driver.FindElement(LanguageTabLocator);
+        public IWebElement AddNewButton => driver.FindElement(AddNewButtonLocator);
+        public IWebElement LanguageTextbox => driver.FindElement(LanguageTextboxLocator);
+        public IWebElement chooseLevelDropdown => driver.FindElement(chooseLevelDropdownLocator);
+        public IWebElement AddButton => driver.FindElement(AddButtonLocator);
+        public IWebElement CancelButton => driver.FindElement(CancelButtonLocator);
+        public IWebElement ToolTipMessage => driver.FindElement(ToolTipMessageLocator);
+        public IWebElement EditLanguageTextbox => driver.FindElement(EditLanguageTextboxLocator);
+        public IWebElement EditChooseLevelDropdown => driver.FindElement(EditChooseLevelDropdownLocator);
+        public IWebElement EditPencilIcon => driver.FindElement(EditPencilIconDropdownLocator);
+        public IWebElement UpdateButton => driver.FindElement(UpdateButtonLocator);
+        public IWebElement EditChooseLevelOption => driver.FindElement(EditChooseLevelOptionLocator);
+        public IWebElement LastDeleteIcon => driver.FindElement(LastDeleteIconLocator);
+        public IList<IWebElement> LanguageRows => driver.FindElements(LanguageRowsLocator);
+        
 
         //Methods
-        public void Click_LanguageTab()
+        public void NavigateToLanguageTab()
         {
-            WaitUtils.WaitToBeVisible(driver, "Xpath", "LanguageTab", 10);
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", ProfileTabLocator, 5);
+            ProfileTab.Click();
+
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", LanguageTabLocator, 5);
             LanguageTab.Click();
         }
 
 
-        public void CreateLanguageRecord(string Language, string Level)
+        public void CreateLanguageRecord(LanguageModel languageModel)
         {
+            By chooseLevelOptionLocator = By.XPath("//*[@value='" + languageModel.Level + "']");
+
             // Click on Add New button
-            WaitUtils.WaitToBeVisible(driver, "Xpath", "AddNewButton", 10);
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", AddNewButtonLocator, 5);
             AddNewButton.Click();
 
-            // Enter Language    
-            LanguageTextbox.Click();
-            LanguageTextbox.SendKeys(Language);
+            // Enter Language
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", LanguageTextboxLocator, 5);
+            if (!string.IsNullOrEmpty(languageModel.Language))
+            {
+                LanguageTextbox.Click();
+                LanguageTextbox.SendKeys(languageModel.Language);
+            }
 
             // Select Language Level from dropdown list
-            WaitUtils.WaitToBeVisible(driver, "Xpath", "chooseLevelDropdown", 5);
-            chooseLevelDropdown.Click();
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", chooseLevelDropdownLocator, 5);
+            if (!string.IsNullOrEmpty(languageModel.Level))
+            {
+                chooseLevelDropdown.Click();
+                driver.FindElement(chooseLevelOptionLocator).Click();
+                
+            }
             
-            driver.FindElement(By.XPath("//*[@value='" + Level + "']")).Click();
-            
-
             // Click on save button
-            WaitUtils.WaitToBeVisible(driver, "Xpath", "AddButton", 5);
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", AddButtonLocator, 5);
             AddButton.Click();
-          
 
         }
 
-        public void EditLanguageRecord(string oldLanguage, string newLanguage, string oldLevel, string newLevel)
-        {
+        //public void EditLanguageRecord(LanguageModel languageModel)
+        //{
 
-            // click edit pencil icon for the existing record
-            WaitUtils.WaitToBeVisible(driver, "Xpath", "EditPencilIcon", 5);
-            EditPencilIcon.Click();
-            
-            if (newLanguage.Length > 0)
-            {
-                EditLanguageTextbox.Clear();
-                EditLanguageTextbox.SendKeys(newLanguage);
-            }
+        //    // click edit pencil icon for the existing record
+        //    WaitUtils.WaitToBeVisible(driver, "XPath", "//div[@id='account-profile-section']//form//table//tbody[2]/tr/td[3]/span[1]/i", 10);
+        //    EditPencilIcon.Click();
 
-            if (newLevel.Length > 0)
-            {
-                EditChooseLevelDropdown.Click();
-                WaitUtils.WaitToBeVisible(driver, "Xpath", "EditChooseLevelDropdown", 5);
+        //    WaitUtils.WaitToBeVisible(driver, "XPath", "//*[@placeholder='Add Language']", 5);
+        //    if (!string.IsNullOrEmpty(languageModel.Language))
+        //    {
+        //        EditLanguageTextbox.Clear();
+        //        EditLanguageTextbox.SendKeys(languageModel.Language);
+        //    }
 
-                IWebElement EditChooseLevelOption = driver.FindElement(By.XPath("//*[@value='" + newLevel + "']"));
-                EditChooseLevelOption.Click();
+        //    WaitUtils.WaitToBeClickable(driver, "XPath", "//*[@class='ui dropdown']", 5);
+        //    if (!string.IsNullOrEmpty(languageModel.Level))
+        //    {
+        //        EditChooseLevelDropdown.Click();
+               
+        //        IWebElement EditChooseLevelOption = driver.FindElement(By.XPath("//*[@value='" + languageModel.Level + "']"));
+        //        EditChooseLevelOption.Click();
 
-            }
+        //    }
 
-            WaitUtils.WaitToBeVisible(driver, "Xpath", "UpdateButton", 5);
-            UpdateButton.Click();
+        //    WaitUtils.WaitToBeVisible(driver, "XPath", "//input[@value='Update']", 10);
+        //    UpdateButton.Click();
            
+        //}
+
+        public bool IsLanguageRecordPresent(LanguageModel languageModel, int rowNumber = 0)
+        {
+            bool recordPresent = false;
+            string getLanguage, getLevel;
+            int languageRowPresent;
+            By getLanguageLocator = By.XPath($"//div[@data-tab='first']//table/tbody[{rowNumber}]/tr/td[1]");
+            By getLevelLocator = By.XPath($"//div[@data-tab='first']//table/tbody[{rowNumber}]/tr/td[2]");
+
+            if (rowNumber == 0)
+            {
+                languageRowPresent = GetLanguageRow(languageModel);
+                if (languageRowPresent > 0)
+                {
+                    recordPresent = true;
+                }
+            }
+            else
+            {
+                WaitUtils.WaitMethod(driver, "ElementIsVisible", getLanguageLocator, 5);
+                getLanguage = driver.FindElement(getLanguageLocator).Text;
+                WaitUtils.WaitMethod(driver, "ElementIsVisible", getLevelLocator, 5);
+                getLevel = driver.FindElement(getLevelLocator).Text;
+                
+
+                ReportLogger.LogInfo($"Retrieved [row {rowNumber}]: Language: {getLanguage}, Level: {getLevel}");
+                if (languageModel.Language.Equals(getLanguage) && languageModel.Level.Equals(getLevel)) 
+                { 
+                    recordPresent = true;
+                }
+            }
+
+            return recordPresent;
         }
 
-        //To Delete Last Language records
+        public int RowCount() => LanguageRows.Count;
+
+        public int GetLanguageRow(LanguageModel languageModel)
+        {
+            string getLanguage, getLevel;
+
+            for (int i = 1; i <= RowCount(); i++)
+            {
+                try
+                {
+                    getLanguage = driver.FindElement(By.XPath($"//div[@data-tab='first']//table/tbody[{i}]/tr/td[1]")).Text;
+                    getLevel = driver.FindElement(By.XPath($"//div[@data-tab='first']//table/tbody[{i}]/tr/td[2]")).Text;
+
+                    if (languageModel.Language.Equals(getLanguage) && languageModel.Level.Equals(getLevel))
+                    {
+                        ReportLogger.LogInfo($"language Present at row: {i}");
+                        return i;
+                    }
+                }
+                catch (NoSuchElementException)
+                {
+                    continue;
+                }
+            }
+            return 0;
+        }
+
+
+        public void SelectLanguageRecord(LanguageModel languageModel)
+        {
+            int rowNumber = GetLanguageRow(languageModel);
+            if (rowNumber > 0)
+            {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+                var editButton = driver.FindElement(By.XPath($"//div[@data-tab='first']//table/tbody[{rowNumber}]//i[@class='outline write icon']"));
+                editButton.Click();
+            }
+
+        }
+
+
         public void DeleteLastLanguageRecords()
         {
-            
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", LastDeleteIconLocator, 10);
             LastDeleteIcon.Click();
-            Thread.Sleep(1000);
         }
 
-        //To Delete specific Language records
-        public void DeletespecificLanguageRecords(string newLanguage)
+      
+        public void ClearLanguage()
         {
 
-            for (int i = 1; i <= LanguageRows.Count; i++)
+            if (LanguageRows != null && LanguageRows.Count > 0)
             {
-                var getLanguageName = driver.FindElement(By.XPath($"//div[@data-tab='first']//table/tbody[{i}]/tr/td[1]")).Text;
 
-                if(getLanguageName == newLanguage)
+                int rowCount = LanguageRows.Count;
+
+                for (int i = 1; i <= rowCount; i++)
                 {
-                  
-                    IWebElement specificDeleteIcon = driver.FindElement(By.XPath($"//table[1]/tbody[{i}]//i[@class='remove icon']"));
-                    specificDeleteIcon.Click();
+                    DeleteLastLanguageRecords();
                     Thread.Sleep(1000);
                 }
             }

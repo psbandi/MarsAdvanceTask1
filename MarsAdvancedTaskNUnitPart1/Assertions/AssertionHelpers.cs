@@ -1,8 +1,6 @@
 ﻿using MarsAdvancedTaskNUnitPart1.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
 
 namespace MarsAdvancedTaskNUnitPart1.Assertions
 {
@@ -10,15 +8,15 @@ namespace MarsAdvancedTaskNUnitPart1.Assertions
     {
         public static void AssertToolTipMessage(CommonDriver page, string expectedMessage)
         {
-            Thread.Sleep(2000);
             IWebDriver driver = page.getDriver();
-
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@class='ns-box-inner']")));
+            By toolTipLocator = By.XPath("//*[@class='ns-box-inner']"); 
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", toolTipLocator, 10);
 
             try
             {
-                IWebElement toolTipMessage = driver.FindElement(By.XPath("//*[@class='ns-box-inner']"));
+                
+
+                IWebElement toolTipMessage = driver.FindElement(toolTipLocator);
 
                 string actualMessage = toolTipMessage.Text.Trim();
 
@@ -43,6 +41,7 @@ namespace MarsAdvancedTaskNUnitPart1.Assertions
                     Assert.Fail("Tooltip message does not match the expected message.");
                    
                 }
+                
             }
 
             catch (WebDriverTimeoutException)
@@ -51,10 +50,7 @@ namespace MarsAdvancedTaskNUnitPart1.Assertions
                 ReportLogger.LogFail("Failed to find the tooltip message.");
                 Assert.Fail("Tooltip message did not appear within the expected time.");
             }
-            finally
-            {
-                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10); // Restore default implicit wait
-            }
+            
         }
 
     }

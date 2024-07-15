@@ -11,7 +11,7 @@
           "DotNetSeleniumExtras.WaitHelpers": "3.11.0",
           "ExtentReports": "5.0.4",
           "Microsoft.Extensions.Configuration": "8.0.0",
-          "Microsoft.Extensions.Configuration.Binder": "8.0.1",
+          "Microsoft.Extensions.Configuration.Binder": "8.0.2",
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
           "Microsoft.NET.Test.Sdk": "17.10.0",
           "NUnit": "4.1.0",
@@ -20,7 +20,7 @@
           "Selenium.Support": "4.22.0",
           "Selenium.WebDriver": "4.22.0",
           "Selenium.WebDriver.ChromeDriver": "126.0.6478.12600",
-          "System.Drawing.Common": "8.0.6"
+          "System.Drawing.Common": "8.0.7"
         },
         "runtime": {
           "MarsAdvancedTaskNUnitPart1.dll": {}
@@ -201,14 +201,14 @@
           }
         }
       },
-      "Microsoft.Extensions.Configuration.Binder/8.0.1": {
+      "Microsoft.Extensions.Configuration.Binder/8.0.2": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0"
         },
         "runtime": {
           "lib/net8.0/Microsoft.Extensions.Configuration.Binder.dll": {
             "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.123.58001"
+            "fileVersion": "8.0.724.31311"
           }
         }
       },
@@ -612,14 +612,14 @@
       },
       "Selenium.WebDriver.ChromeDriver/126.0.6478.12600": {},
       "System.Collections.Immutable/5.0.0": {},
-      "System.Drawing.Common/8.0.6": {
+      "System.Drawing.Common/8.0.7": {
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "8.0.0"
         },
         "runtime": {
           "lib/net8.0/System.Drawing.Common.dll": {
             "assemblyVersion": "8.0.0.0",
-            "fileVersion": "8.0.624.26909"
+            "fileVersion": "8.0.724.31308"
           }
         }
       },
@@ -669,7 +669,7 @@
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "System.Windows.Extensions/5.0.0": {
         "dependencies": {
-          "System.Drawing.Common": "8.0.6"
+          "System.Drawing.Common": "8.0.7"
         },
         "runtime": {
           "lib/netcoreapp3.0/System.Windows.Extensions.dll": {
@@ -764,12 +764,12 @@
       "path": "microsoft.extensions.configuration.abstractions/8.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Configuration.Binder/8.0.1": {
+    "Microsoft.Extensions.Configuration.Binder/8.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2UKFJnLiBt7Od6nCnTqP9rTIUNhzmn9Hv1l2FchyKbz8xieB9ULwZTbQZMw+M24Qw3F5dzzH1U9PPleN0LNLOQ==",
-      "path": "microsoft.extensions.configuration.binder/8.0.1",
-      "hashPath": "microsoft.extensions.configuration.binder.8.0.1.nupkg.sha512"
+      "sha512": "sha512-7IQhGK+wjyGrNsPBjJcZwWAr+Wf6D4+TwOptUt77bWtgNkiV8tDEbhFS+dDamtQFZ2X7kWG9m71iZQRj2x3zgQ==",
+      "path": "microsoft.extensions.configuration.binder/8.0.2",
+      "hashPath": "microsoft.extensions.configuration.binder.8.0.2.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration.FileExtensions/8.0.0": {
       "type": "package",
@@ -911,12 +911,12 @@
       "path": "system.collections.immutable/5.0.0",
       "hashPath": "system.collections.immutable.5.0.0.nupkg.sha512"
     },
-    "System.Drawing.Common/8.0.6": {
+    "System.Drawing.Common/8.0.7": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-aSwRnJzz6fZ73JvWMMG0KvBwOnXsBTFtfHLriQyAPrDIZ+NrDfl15GWbO/A35k0dtH77D7jfxzEcFF7RONtU/w==",
-      "path": "system.drawing.common/8.0.6",
-      "hashPath": "system.drawing.common.8.0.6.nupkg.sha512"
+      "sha512": "sha512-DoeBae0gZvxs3mtfoub6F1k28fSkFPzmhFuvblplKMnLYKmTMVy0j4Yxahh96KM532JzHGDxhJn1VpMKSB1pyg==",
+      "path": "system.drawing.common/8.0.7",
+      "hashPath": "system.drawing.common.8.0.7.nupkg.sha512"
     },
     "System.Memory/4.5.4": {
       "type": "package",

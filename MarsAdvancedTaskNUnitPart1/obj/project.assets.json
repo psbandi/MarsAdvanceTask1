@@ -228,7 +228,7 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Configuration.Binder/8.0.1": {
+      "Microsoft.Extensions.Configuration.Binder/8.0.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "8.0.0"
@@ -779,7 +779,7 @@
           }
         }
       },
-      "System.Drawing.Common/8.0.6": {
+      "System.Drawing.Common/8.0.7": {
         "type": "package",
         "dependencies": {
           "Microsoft.Win32.SystemEvents": "8.0.0"
@@ -1442,10 +1442,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Configuration.Binder/8.0.1": {
-      "sha512": "2UKFJnLiBt7Od6nCnTqP9rTIUNhzmn9Hv1l2FchyKbz8xieB9ULwZTbQZMw+M24Qw3F5dzzH1U9PPleN0LNLOQ==",
+    "Microsoft.Extensions.Configuration.Binder/8.0.2": {
+      "sha512": "7IQhGK+wjyGrNsPBjJcZwWAr+Wf6D4+TwOptUt77bWtgNkiV8tDEbhFS+dDamtQFZ2X7kWG9m71iZQRj2x3zgQ==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.binder/8.0.1",
+      "path": "microsoft.extensions.configuration.binder/8.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1478,7 +1478,7 @@
         "lib/net8.0/Microsoft.Extensions.Configuration.Binder.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
-        "microsoft.extensions.configuration.binder.8.0.1.nupkg.sha512",
+        "microsoft.extensions.configuration.binder.8.0.2.nupkg.sha512",
         "microsoft.extensions.configuration.binder.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -2105,10 +2105,10 @@
         "version.txt"
       ]
     },
-    "System.Drawing.Common/8.0.6": {
-      "sha512": "aSwRnJzz6fZ73JvWMMG0KvBwOnXsBTFtfHLriQyAPrDIZ+NrDfl15GWbO/A35k0dtH77D7jfxzEcFF7RONtU/w==",
+    "System.Drawing.Common/8.0.7": {
+      "sha512": "DoeBae0gZvxs3mtfoub6F1k28fSkFPzmhFuvblplKMnLYKmTMVy0j4Yxahh96KM532JzHGDxhJn1VpMKSB1pyg==",
       "type": "package",
-      "path": "system.drawing.common/8.0.6",
+      "path": "system.drawing.common/8.0.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2140,7 +2140,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "system.drawing.common.8.0.6.nupkg.sha512",
+        "system.drawing.common.8.0.7.nupkg.sha512",
         "system.drawing.common.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -2648,7 +2648,7 @@
       "DotNetSeleniumExtras.WaitHelpers >= 3.11.0",
       "ExtentReports >= 5.0.4",
       "Microsoft.Extensions.Configuration >= 8.0.0",
-      "Microsoft.Extensions.Configuration.Binder >= 8.0.1",
+      "Microsoft.Extensions.Configuration.Binder >= 8.0.2",
       "Microsoft.Extensions.Configuration.Json >= 8.0.0",
       "Microsoft.NET.Test.Sdk >= 17.10.0",
       "NUnit >= 4.1.0",
@@ -2657,7 +2657,7 @@
       "Selenium.Support >= 4.22.0",
       "Selenium.WebDriver >= 4.22.0",
       "Selenium.WebDriver.ChromeDriver >= 126.0.6478.12600",
-      "System.Drawing.Common >= 8.0.6"
+      "System.Drawing.Common >= 8.0.7"
     ]
   },
   "packageFolders": {
@@ -2666,11 +2666,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\Prasanna\\__TempBackup\\AdvancedTaskPart1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\Prasanna\\MarsAdvanceTask1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj",
       "projectName": "MarsAdvancedTaskNUnitPart1",
-      "projectPath": "C:\\Users\\Lenovo\\Prasanna\\__TempBackup\\AdvancedTaskPart1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj",
+      "projectPath": "C:\\Users\\Lenovo\\Prasanna\\MarsAdvanceTask1\\MarsAdvancedTaskNUnitPart1\\MarsAdvancedTaskNUnitPart1.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\Prasanna\\__TempBackup\\AdvancedTaskPart1\\MarsAdvancedTaskNUnitPart1\\obj\\",
+      "outputPath": "C:\\Users\\Lenovo\\Prasanna\\MarsAdvanceTask1\\MarsAdvancedTaskNUnitPart1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2718,7 +2718,7 @@
           },
           "Microsoft.Extensions.Configuration.Binder": {
             "target": "Package",
-            "version": "[8.0.1, )"
+            "version": "[8.0.2, )"
           },
           "Microsoft.Extensions.Configuration.Json": {
             "target": "Package",
@@ -2756,7 +2756,7 @@
           },
           "System.Drawing.Common": {
             "target": "Package",
-            "version": "[8.0.6, )"
+            "version": "[8.0.7, )"
           }
         },
         "imports": [
