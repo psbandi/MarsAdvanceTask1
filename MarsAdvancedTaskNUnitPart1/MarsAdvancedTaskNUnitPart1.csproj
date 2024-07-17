@@ -39,7 +39,6 @@
     <Folder Include="Reports\" />
     <Folder Include="TestData\MarsAccountMenuComponent\Notification\" />
     <Folder Include="TestData\ProfileAboutMeComponent\Avaliability\" />
-    <Folder Include="TestData\ProfileOverviewComponent\Skills\" />
     <Folder Include="TestData\SearchSkills\" />
     <Folder Include="TestData\ShareSkills\" />
     <Folder Include="Tests\MarsAccountMenuComponent\Notification\" />
@@ -77,10 +76,28 @@
     <None Update="TestData\ProfileOverviewComponent\Language\EditLanguagewithValidData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestData\ProfileOverviewComponent\Login\LoginTestData.json">
+    <None Update="TestData\Login\LoginTestData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Utilities\JsonReader\ProfileOverviewComponent\Login\LoginTestData.json">
+    <None Update="TestData\ProfileOverviewComponent\Skills\CreateSkillWithDuplicateData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ProfileOverviewComponent\Skills\CreateSkillWithNullData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ProfileOverviewComponent\Skills\CreateSkillWithValidData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ProfileOverviewComponent\Skills\DeleteSkill.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ProfileOverviewComponent\Skills\EditSkillWithDuplicateData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ProfileOverviewComponent\Skills\EditSkillWithNullData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\ProfileOverviewComponent\Skills\EditSkillWithValidData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

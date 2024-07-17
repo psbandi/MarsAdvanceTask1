@@ -1,10 +1,7 @@
 ﻿using MarsAdvancedTaskNUnitPart1.Assertions;
-using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent;
 using MarsAdvancedTaskNUnitPart1.Models.ProfileOverviewModel;
+using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent;
 using NUnit.Framework;
-using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium;
-using SeleniumExtras.WaitHelpers;
 
 namespace MarsAdvancedTaskNUnitPart1.Tests.ProfileOverviewComponent
 {
@@ -20,7 +17,7 @@ namespace MarsAdvancedTaskNUnitPart1.Tests.ProfileOverviewComponent
            
         }
 
-        [Test, Order(1), Description("This test create a new Language record with valid data")]
+        [Test, Order(1), Description("This test create 4 Language record with valid data")]
         public void TestCreateLanguageWithVaildData()
         {
             // Load test data for creating Language
@@ -32,44 +29,53 @@ namespace MarsAdvancedTaskNUnitPart1.Tests.ProfileOverviewComponent
                 Thread.Sleep(2000);
                 AssertionHelpers.AssertToolTipMessage(languagePageObject, language.AssertionMessage);
                 bool recordPresent = languagePageObject.IsLanguageRecordPresent(language);
-                Assert.That(recordPresent, Is.True);
-                languagePageObject.DeleteLastLanguageRecords();               
+                Assert.That(recordPresent, Is.True);                                           
+            }
+            bool isAddNewButtonDisplayed = languagePageObject.IsAddNewButtonDisplayed();
+            Assert.That(isAddNewButtonDisplayed, Is.False);
+
+            foreach (var language in testData)
+            {
+                languagePageObject.DeleteLastLanguageRecords();
             }
         }
+                
 
+        [Test, Order(2), Description("This test edits Language records with valid data")]
+        public void TestEditLanguageWithValidData()
+        {
+            List<LanguageModel> createData = LanguageConfig.LoadCreateLanguageWithValidData();
+            List<LanguageModel> editData = LanguageConfig.LoadEditLanguageWithValidData();
 
-        //[Test, Order(2), Description("This test edits Language records with valid data")]
-        //public void TestEditLanguageRecords()
-        //{
-        //    List<LanguageModel> createData = LanguageConfig.LoadCreateLanguageWithValidData();
-        //    List<LanguageModel> editData = LanguageConfig.LoadEditLanguageWithValidData();
+            foreach (var initialLanguage in createData)
+            {
 
-        //    foreach (var initialLanguage in createData)
-        //    {
+                languagePageObject.CreateLanguageRecord(initialLanguage);
+                Thread.Sleep(2000);
+                AssertionHelpers.AssertToolTipMessage(languagePageObject, initialLanguage.AssertionMessage);
+            }
 
-        //        languagePageObject.CreateLanguageRecord(initialLanguage);
-        //        AssertionHelpers.AssertToolTipMessage(languagePageObject, initialLanguage.AssertionMessage);
-        //    }
+            foreach (var Language in editData)
+            {
+                LanguageModel originalLanguage = createData.First(l => l.Language == Language.OriginalLanguage);
 
-        //    foreach (var Language in editData)
-        //    {
-        //        LanguageModel originalLanguage = createData.First(l => l.Language == Language.OriginalLanguage);
+                if (originalLanguage != null)
+                {
+                    languagePageObject.SelectLanguageRecord(originalLanguage);
+                    languagePageObject.EditLanguageRecord(Language);
+                    Thread.Sleep(2000);
+                    AssertionHelpers.AssertToolTipMessage(languagePageObject, Language.AssertionMessage);
 
-        //        if (originalLanguage != null)
-        //        {
-        //            languagePageObject.SelectLanguageRecord(originalLanguage);
-        //            languagePageObject.EditLanguageRecord(Language);
-        //            AssertionHelpers.AssertToolTipMessage(languagePageObject, Language.AssertionMessage);
-        //            Thread.Sleep(1000);
-        //            bool recordPresent = languagePageObject.IsLanguageRecordPresent(Language);
-        //            Assert.That(recordPresent, Is.True);
-        //        }
-        //    }
-        //    foreach (var Language in editData)
-        //    {
-        //        languagePageObject.DeleteLastLanguageRecords();
-        //    }
-        //}
+                    bool recordPresent = languagePageObject.IsLanguageRecordPresent(Language);
+                    Assert.That(recordPresent, Is.True);
+                }
+            }
+            foreach (var Language in editData)
+            {
+                languagePageObject.DeleteLastLanguageRecords();
+                Thread.Sleep(1000);
+            }
+        }
 
         [Test, Order(3), Description("This test deletes Language records")]
         public void TestDeleteLanguageRecords()
@@ -118,73 +124,74 @@ namespace MarsAdvancedTaskNUnitPart1.Tests.ProfileOverviewComponent
             LanguageModel Language = testData.First();
 
             languagePageObject.CreateLanguageRecord(initialLanguage);
-            AssertionHelpers.AssertToolTipMessage(languagePageObject, initialLanguage.AssertionMessage);
-
+            Thread.Sleep(2000);
+            AssertionHelpers.AssertToolTipMessage(languagePageObject, initialLanguage.AssertionMessage);            
 
             languagePageObject.CreateLanguageRecord(Language);
-            AssertionHelpers.AssertToolTipMessage(languagePageObject, Language.AssertionMessage);
-            Thread.Sleep(5000);
-            languagePageObject.CancelButton.Click();
+            Thread.Sleep(2000);
+            AssertionHelpers.AssertToolTipMessage(languagePageObject, Language.AssertionMessage);                       
             int rowCount = languagePageObject.RowCount();
             Assert.That(languagePageObject.RowCount(), Is.EqualTo(rowCount));
+            languagePageObject.CancelButton.Click();
 
             languagePageObject.DeleteLastLanguageRecords();
         }
 
 
-        //[Test, Order(6), Description("This test edits Language record with duplicate data")]
-        //public void TestEditLanguageRecordWithDuplicateData()
-        //{
-        //    List<LanguageModel> createData = LanguageConfig.LoadCreateLanguageWithValidData();
-        //    List<LanguageModel> editData = LanguageConfig.LoadEditLanguageWithDuplicateData();
+        [Test, Order(6), Description("This test edits Language record with duplicate data")]
+        public void TestEditLanguageRecordWithDuplicateData()
+        {
+            List<LanguageModel> createData = LanguageConfig.LoadCreateLanguageWithValidData();
+            List<LanguageModel> editData = LanguageConfig.LoadEditLanguageWithDuplicateData();
 
-        //    LanguageModel initialLanguage = createData.First();
-        //    LanguageModel editLanguage = editData.First();
+            LanguageModel initialLanguage = createData.First();
+            LanguageModel editLanguage = editData.First();
 
-        //    languagePageObject.CreateLanguageRecord(initialLanguage);
-        //    AssertionHelpers.AssertToolTipMessage(languagePageObject, initialLanguage.AssertionMessage);
+            languagePageObject.CreateLanguageRecord(initialLanguage);
+            Thread.Sleep(1000);
+            AssertionHelpers.AssertToolTipMessage(languagePageObject, initialLanguage.AssertionMessage);
 
-        //    languagePageObject.SelectLanguageRecord(initialLanguage);
-        //    languagePageObject.EditLanguageRecord(editLanguage);
-        //    AssertionHelpers.AssertToolTipMessage(languagePageObject, editLanguage.AssertionMessage);
-        //    Thread.Sleep(3000);
-        //    languagePageObject.CancelButton.Click();
-        //    Thread.Sleep(1000);
-        //    int rowCount = languagePageObject.RowCount();
-        //    Assert.That(languagePageObject.RowCount(), Is.EqualTo(rowCount));
+            languagePageObject.SelectLanguageRecord(initialLanguage);
+            languagePageObject.EditLanguageRecord(editLanguage);
+            Thread.Sleep(1000);
+            AssertionHelpers.AssertToolTipMessage(languagePageObject, editLanguage.AssertionMessage);
 
-        //    languagePageObject.DeleteLastLanguageRecords();
+            languagePageObject.CancelButton.Click();
 
-        //}
+            int rowCount = languagePageObject.RowCount();
+            Assert.That(languagePageObject.RowCount(), Is.EqualTo(rowCount));
+
+            languagePageObject.DeleteLastLanguageRecords();
+
+        }
 
 
-        //[Test, Order(7), Description("This test edits Language record with null data")]
-        //public void TestEditLanguageRecordWithNullData()
-        //{
-        //    List<LanguageModel> createData = LanguageConfig.LoadCreateLanguageWithValidData();
-        //    List<LanguageModel> editData = LanguageConfig.LoadEditLanguageWithNullData();
+        [Test, Order(7), Description("This test edits Language record with null data")]
+        public void TestEditLanguageRecordWithNullData()
+        {
+            List<LanguageModel> createData = LanguageConfig.LoadCreateLanguageWithValidData();
+            List<LanguageModel> editData = LanguageConfig.LoadEditLanguageWithNullData();
 
-        //    LanguageModel initialLanguage = createData.First();
-        //    LanguageModel editLanguage = editData.First();
+            LanguageModel initialLanguage = createData.First();
+            LanguageModel editLanguage = editData.First();
 
-        //    languagePageObject.CreateLanguageRecord(initialLanguage);
-        //    AssertionHelpers.AssertToolTipMessage(languagePageObject, initialLanguage.AssertionMessage);
-        //    Console.WriteLine($"Created initial record with Language: {initialLanguage.Language}, From: {initialLanguage.Level}");
+            languagePageObject.CreateLanguageRecord(initialLanguage);
+            Thread.Sleep(1000);
+            AssertionHelpers.AssertToolTipMessage(languagePageObject, initialLanguage.AssertionMessage);
 
-        //    languagePageObject.SelectLanguageRecord(initialLanguage);
-        //    languagePageObject.EditLanguageRecord(editLanguage);
-        //    AssertionHelpers.AssertToolTipMessage(languagePageObject, editLanguage.AssertionMessage);
-        //    Console.WriteLine($"Edited record to Language: {editLanguage.Language}, From: {editLanguage.Level}");
-        //    //languagePageObject.CancelButton.Click();
-        //    //Thread.Sleep(1000);
-        //    bool recordPresent = languagePageObject.IsLanguageRecordPresent(editLanguage);
-        //    Assert.That(recordPresent, Is.False);
+            languagePageObject.SelectLanguageRecord(initialLanguage);
+            languagePageObject.EditLanguageRecord(editLanguage);
+            Thread.Sleep(1000);
+            AssertionHelpers.AssertToolTipMessage(languagePageObject, editLanguage.AssertionMessage);
 
-        //    Console.WriteLine($"Record presence after edit: {recordPresent}");
+            languagePageObject.CancelButton.Click();
 
-        //    languagePageObject.DeleteLastLanguageRecords();
+            bool recordPresent = languagePageObject.IsLanguageRecordPresent(editLanguage);
+            Assert.That(recordPresent, Is.False);
 
-        //}
+            languagePageObject.DeleteLastLanguageRecords();
+
+        }
 
     }
 }

@@ -194,8 +194,6 @@ C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\n
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Language\EditLanguagewithDuplicateData.json
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Language\EditLanguagewithNullData.json
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Language\EditLanguagewithValidData.json
-C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Login\LoginTestData.json
-C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\Utilities\JsonReader\ProfileOverviewComponent\Login\LoginTestData.json
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\MarsAdvancedTaskNUnitPart1.deps.json
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\MarsAdvancedTaskNUnitPart1.runtimeconfig.json
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\MarsAdvancedTaskNUnitPart1.dll
@@ -330,3 +328,11 @@ C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\obj\Debug\n
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\obj\Debug\net8.0\MarsAdvancedTaskNUnitPart1.genruntimeconfig.cache
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\obj\Debug\net8.0\ref\MarsAdvancedTaskNUnitPart1.dll
 C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\Appsetting\Appsetting.json
+C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\Login\LoginTestData.json
+C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Skills\CreateSkillWithDuplicateData.json
+C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Skills\CreateSkillWithNullData.json
+C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Skills\CreateSkillWithValidData.json
+C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Skills\DeleteSkill.json
+C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Skills\EditSkillWithDuplicateData.json
+C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Skills\EditSkillWithNullData.json
+C:\Users\Lenovo\Prasanna\MarsAdvanceTask1\MarsAdvancedTaskNUnitPart1\bin\Debug\net8.0\TestData\ProfileOverviewComponent\Skills\EditSkillWithValidData.json

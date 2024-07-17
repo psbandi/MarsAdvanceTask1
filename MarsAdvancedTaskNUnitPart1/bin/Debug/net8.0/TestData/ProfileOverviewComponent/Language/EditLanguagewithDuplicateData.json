@@ -1,8 +1,8 @@
 ﻿[
   {
     "OriginalLanguage": "English",
-    "Language": "Spanish",
+    "Language": "English",
     "Level": "Basic",
-    "AssertionMessage": "This language is already exist to your language list."
+    "AssertionMessage": "This language is already added to your language list."
   }
 ]

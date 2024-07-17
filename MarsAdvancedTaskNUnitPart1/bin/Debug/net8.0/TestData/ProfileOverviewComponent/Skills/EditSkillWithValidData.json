@@ -1,0 +1,26 @@
+﻿[
+  {
+    "OriginalSkill": "SpecFlow",
+    "Skill": "Cucumber",
+    "Level": "Intermediate",
+    "AssertionMessage": "Cucumber has been updated to your skills"
+  },
+  {
+    "OriginalSkill": "C#",
+    "Skill": "GitHub",
+    "Level": "Intermediate",
+    "AssertionMessage": "GitHub has been updated to your skills"
+  },
+  {
+    "OriginalSkill": "Java",
+    "Skill": "C#",
+    "Level": "Expert",
+    "AssertionMessage": "C# has been updated to your skills"
+  },
+  {
+    "OriginalSkill": "@$#1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789",
+    "Skill": "#$%^&&*()@&!<>?:: 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789",
+    "Level": "Basic",
+    "AssertionMessage": "#$%^&&*()@&!<>?:: 123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789 has been updated to your skills"
+  }
+]

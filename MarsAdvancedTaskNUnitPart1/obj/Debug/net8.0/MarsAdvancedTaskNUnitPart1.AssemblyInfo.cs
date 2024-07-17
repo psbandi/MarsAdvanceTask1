@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MarsAdvancedTaskNUnitPart1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e75ec213b420c74fb3c1430f0efeba1658803060")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9e465e6d21a13244d818300db4d54bd9b4373a2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MarsAdvancedTaskNUnitPart1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MarsAdvancedTaskNUnitPart1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

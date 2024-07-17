@@ -5,8 +5,7 @@ using MarsAdvancedTaskNUnitPart1.Models.ProfileOverviewModel;
 namespace MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent
 {
     public class LanguageConfig
-    {
-        
+    {        
         public static List<LanguageModel> LoadConfig(string fileName)
         {
             string jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TestData", "ProfileOverviewComponent", "Language", fileName);

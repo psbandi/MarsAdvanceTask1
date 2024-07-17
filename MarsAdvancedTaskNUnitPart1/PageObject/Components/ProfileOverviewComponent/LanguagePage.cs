@@ -1,8 +1,6 @@
 ﻿using MarsAdvancedTaskNUnitPart1.Models.ProfileOverviewModel;
 using MarsAdvancedTaskNUnitPart1.Utilities;
-using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 
 namespace MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewComponent
@@ -33,7 +31,7 @@ namespace MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewCompon
         By ToolTipMessageLocator => By.XPath("//*[@class='ns-box-inner']");
         By EditLanguageTextboxLocator => By.XPath("//*[@placeholder='Add Language']");
         By EditChooseLevelDropdownLocator => By.XPath("//*[@class='ui dropdown']");
-        By EditPencilIconDropdownLocator => By.XPath("//div[@id='account-profile-section']//form//table//tbody[2]/tr/td[3]/span[1]/i");
+        By EditPencilIconLocator => By.XPath("//div[@id='account-profile-section']//form//table//tbody[2]/tr/td[3]/span[1]/i");
         By UpdateButtonLocator => By.XPath("//input[@value='Update']");
         By EditChooseLevelOptionLocator => By.XPath("//*[@value='\" + newLevel + \"']");
         By LastDeleteIconLocator => By.XPath("//table[1]/tbody[last()]//i[@class='remove icon']");
@@ -52,7 +50,7 @@ namespace MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewCompon
         public IWebElement ToolTipMessage => driver.FindElement(ToolTipMessageLocator);
         public IWebElement EditLanguageTextbox => driver.FindElement(EditLanguageTextboxLocator);
         public IWebElement EditChooseLevelDropdown => driver.FindElement(EditChooseLevelDropdownLocator);
-        public IWebElement EditPencilIcon => driver.FindElement(EditPencilIconDropdownLocator);
+        public IWebElement EditPencilIcon => driver.FindElement(EditPencilIconLocator);
         public IWebElement UpdateButton => driver.FindElement(UpdateButtonLocator);
         public IWebElement EditChooseLevelOption => driver.FindElement(EditChooseLevelOptionLocator);
         public IWebElement LastDeleteIcon => driver.FindElement(LastDeleteIconLocator);
@@ -62,7 +60,6 @@ namespace MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewCompon
         //Methods
         public void NavigateToLanguageTab()
         {
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             WaitUtils.WaitMethod(driver, "ElementIsVisible", ProfileTabLocator, 5);
             ProfileTab.Click();
 
@@ -102,34 +99,42 @@ namespace MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewCompon
 
         }
 
-        //public void EditLanguageRecord(LanguageModel languageModel)
-        //{
+        public bool IsAddNewButtonDisplayed()
+        {
+            try
+            {
+                return AddNewButton.Displayed;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
 
-        //    // click edit pencil icon for the existing record
-        //    WaitUtils.WaitToBeVisible(driver, "XPath", "//div[@id='account-profile-section']//form//table//tbody[2]/tr/td[3]/span[1]/i", 10);
-        //    EditPencilIcon.Click();
+        public void EditLanguageRecord(LanguageModel languageModel)
+        {
 
-        //    WaitUtils.WaitToBeVisible(driver, "XPath", "//*[@placeholder='Add Language']", 5);
-        //    if (!string.IsNullOrEmpty(languageModel.Language))
-        //    {
-        //        EditLanguageTextbox.Clear();
-        //        EditLanguageTextbox.SendKeys(languageModel.Language);
-        //    }
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", EditLanguageTextboxLocator, 5);
+            if (!string.IsNullOrEmpty(languageModel.Language))
+            {
+                EditLanguageTextbox.Clear();
+                EditLanguageTextbox.SendKeys(languageModel.Language);
+            }
 
-        //    WaitUtils.WaitToBeClickable(driver, "XPath", "//*[@class='ui dropdown']", 5);
-        //    if (!string.IsNullOrEmpty(languageModel.Level))
-        //    {
-        //        EditChooseLevelDropdown.Click();
-               
-        //        IWebElement EditChooseLevelOption = driver.FindElement(By.XPath("//*[@value='" + languageModel.Level + "']"));
-        //        EditChooseLevelOption.Click();
+            WaitUtils.WaitMethod(driver, "ElementIsClickable", EditChooseLevelDropdownLocator, 5);
+            if (!string.IsNullOrEmpty(languageModel.Level))
+            {
+                EditChooseLevelDropdown.Click();
 
-        //    }
+                IWebElement EditChooseLevelOption = driver.FindElement(By.XPath("//*[@value='" + languageModel.Level + "']"));
+                EditChooseLevelOption.Click();
 
-        //    WaitUtils.WaitToBeVisible(driver, "XPath", "//input[@value='Update']", 10);
-        //    UpdateButton.Click();
-           
-        //}
+            }
+
+            WaitUtils.WaitMethod(driver, "ElementIsVisible", UpdateButtonLocator, 5);
+            UpdateButton.Click();
+
+        }
 
         public bool IsLanguageRecordPresent(LanguageModel languageModel, int rowNumber = 0)
         {
@@ -195,12 +200,14 @@ namespace MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewCompon
 
         public void SelectLanguageRecord(LanguageModel languageModel)
         {
+            
             int rowNumber = GetLanguageRow(languageModel);
+            By editPencilIconLocator = By.XPath($"//div[@data-tab='first']//table/tbody[{rowNumber}]//i[@class='outline write icon']");
             if (rowNumber > 0)
             {
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                WaitUtils.WaitMethod(driver, "ElementIsVisible", editPencilIconLocator, 5);
 
-                var editButton = driver.FindElement(By.XPath($"//div[@data-tab='first']//table/tbody[{rowNumber}]//i[@class='outline write icon']"));
+                var editButton = driver.FindElement(editPencilIconLocator);
                 editButton.Click();
             }
 

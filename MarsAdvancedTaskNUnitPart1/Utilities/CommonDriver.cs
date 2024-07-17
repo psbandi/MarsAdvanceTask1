@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Reflection;
 
@@ -30,6 +29,7 @@ namespace MarsAdvancedTaskNUnitPart1.Utilities
             return driver;
         }
 
+       
 
         public string TakeScreenshot()
         {

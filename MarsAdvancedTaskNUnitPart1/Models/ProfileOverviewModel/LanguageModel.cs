@@ -7,7 +7,6 @@ namespace MarsAdvancedTaskNUnitPart1.Models.ProfileOverviewModel
         public string Language { get; set; }
         public string Level { get; set; }
         public string AssertionMessage { get; set; }
-        public bool IsValid { get; set; }
-
+ 
     }
 }

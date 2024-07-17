@@ -1,184 +1,192 @@
-﻿//using MarsAdvancedTaskNUnitPart1.Assertions;
-//using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent;
-//using NUnit.Framework;
+﻿using MarsAdvancedTaskNUnitPart1.Assertions;
+using MarsAdvancedTaskNUnitPart1.Models.ProfileOverviewModel;
+using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent;
+using NUnit.Framework;
 
 
-//namespace MarsAdvancedTaskNUnitPart1.Tests.ProfileOverviewComponent
-//{
-//    [TestFixture]
-//    [Parallelizable]
-//    public class SkillTest : BaseTest
-//    {
-//        [SetUp]
-//        public void SetUpEducation()
-//        {
-//            educationPageObject.NavigateToEducationTab();
-//            educationPageObject.ClearEducation();
-//            Thread.Sleep(1000);
-//        }
+namespace MarsAdvancedTaskNUnitPart1.Tests.ProfileOverviewComponent
+{
+    [TestFixture]
+    [Parallelizable]
+    public class SkillTest : BaseTest
+    {
+        [SetUp]
+        public void SetUpSkill()
+        {
+            skillPageObject.NavigateToSkillsTab();
+            skillPageObject.ClearSkill();
+            Thread.Sleep(1000);
+        }
 
-//        [Test, Order(1), Description("This test create a new Education record with valid data")]
-//        public void TestCreateEducationWithValidData()
-//        {
-//            List<EducationConfig> testData = EducationConfig.LoadCreateEducationWithValidData();
-//            foreach (var education in testData)
-//            {
-//                educationPageObject.CreateEducationRecord(education);
-//                AssertionHelpers.AssertToolTipMessage(educationPageObject, education.AssertionMessage);
-//                bool recordPresent = educationPageObject.IsEducationRecordPresent(education);
-//                Assert.That(recordPresent, Is.True);
-//                educationPageObject.DeleteLastEducationRecords();
-//            }
-//        }
+        [Test, Order(1), Description("This test create a new skill record with valid data")]
+        public void TestCreateSkillWithVaildData()
+        {
+            // Load test data for creating skill
+            List<SkillModel> testData = SkillConfig.LoadCreateSkillWithValidData();
 
-//        [Test, Order(2), Description("This test edits education records with valid data")]
-//        public void TestEditEducationRecords()
-//        {
-//            List<EducationConfig> createData = EducationConfig.LoadCreateEducationWithValidData();
-//            List<EducationConfig> editData = EducationConfig.LoadEditEducationWithValidData();
-
-//            foreach (var initialeducation in createData)
-//            {
-
-//                educationPageObject.CreateEducationRecord(initialeducation);
-//                AssertionHelpers.AssertToolTipMessage(educationPageObject, initialeducation.AssertionMessage);
-//            }
-
-//            foreach (var education in editData)
-//            {
-//                EducationConfig originalEducation = createData.FirstOrDefault(e => e.University == education.OriginalEducation);
-
-//                if (originalEducation != null)
-//                {
-//                    educationPageObject.SelectEducationRecord(originalEducation);
-//                    educationPageObject.EditEducationRecord(education);
-//                    AssertionHelpers.AssertToolTipMessage(educationPageObject, education.AssertionMessage);
-//                    Thread.Sleep(1000);
-//                    bool recordPresent = educationPageObject.IsEducationRecordPresent(education);
-//                    Assert.That(recordPresent, Is.True);
-//                }
-//            }
-//            foreach (var education in editData)
-//            {
-//                educationPageObject.DeleteLastEducationRecords();
-//            }
-//        }
+            foreach (var skill in testData)
+            {
+                skillPageObject.CreateSkillRecord(skill);
+                Thread.Sleep(2000);
+                AssertionHelpers.AssertToolTipMessage(skillPageObject, skill.AssertionMessage);
+                bool recordPresent = skillPageObject.IsSkillRecordPresent(skill);
+                Assert.That(recordPresent, Is.True);
+                skillPageObject.DeleteLastSkillRecord();
+            }
+        }
 
 
-//        [Test, Order(3), Description("This test deletes education records")]
-//        public void TestDeleteEducationRecords()
-//        {
-//            List<EducationConfig> testData = EducationConfig.LoadDeleteEducation();
+        [Test, Order(2), Description("This test edits skill records with valid data")]
+        public void TestEditSkillWithValidData()
+        {
+            List<SkillModel> createData = SkillConfig.LoadCreateSkillWithValidData();
+            List<SkillModel> editData = SkillConfig.LoadEditSkillWithValidData();
 
-//            foreach (var education in testData)
-//            {
-//                educationPageObject.CreateEducationRecord(education);
-//                bool recordPresentBeforeDeletion = educationPageObject.IsEducationRecordPresent(education);
+            foreach (var initialSkill in createData)
+            {
 
-//                if (recordPresentBeforeDeletion)
-//                {
-//                    educationPageObject.DeleteLastEducationRecords();
-//                    AssertionHelpers.AssertToolTipMessage(educationPageObject, education.AssertionMessage);
-//                    bool recordPresent = educationPageObject.IsEducationRecordPresent(education);
-//                    Assert.That(recordPresent, Is.False);
-//                }
-//            }
-//        }
+                skillPageObject.CreateSkillRecord(initialSkill);
+                Thread.Sleep(2000);
+                AssertionHelpers.AssertToolTipMessage(skillPageObject, initialSkill.AssertionMessage);
+            }
 
+            foreach (var skill in editData)
+            {
+                SkillModel originalSkill = createData.First(s => s.Skill == skill.OriginalSkill);
 
-//        [Test, Order(4), Description("This test add education record with null data")]
-//        public void TestCreateEducationRecordWithNullData()
-//        {
-//            List<EducationConfig> testData = EducationConfig.LoadCreateEducationWithNullData();
+                if (originalSkill != null)
+                {
+                    skillPageObject.SelectSkillRecord(originalSkill);
+                    skillPageObject.EditSkillRecord(skill);
+                    Thread.Sleep(2000);
+                    AssertionHelpers.AssertToolTipMessage(skillPageObject, skill.AssertionMessage);
 
-//            foreach (var education in testData)
-//            {
-//                educationPageObject.CreateEducationRecord(education);
-//                bool recordPresent = educationPageObject.IsEducationRecordPresent(education);
-//                Assert.That(recordPresent, Is.False);
-//                educationPageObject.CancelButton.Click();
-//                Thread.Sleep(1000);
-//            }
-//        }
+                    bool recordPresent = skillPageObject.IsSkillRecordPresent(skill);
+                    Assert.That(recordPresent, Is.True);
+                }
+            }
+            foreach (var skill in editData)
+            {
+                skillPageObject.DeleteLastSkillRecord();
+                Thread.Sleep(1000);
+            }
+        }
 
+        [Test, Order(3), Description("This test deletes skill records")]
+        public void TestDeleteSkillRecords()
+        {
+            List<SkillModel> testData = SkillConfig.LoadDeleteSkill();
 
-//        [Test, Order(5), Description("This test add education record with Duplicate data")]
-//        public void TestCreateEducationRecordWithDuplicateData()
-//        {
-//            List<EducationConfig> createData = EducationConfig.LoadCreateEducationWithValidData();
-//            List<EducationConfig> testData = EducationConfig.LoadCreateEducationWithDuplicateData();
+            foreach (var skill in testData)
+            {
+                skillPageObject.CreateSkillRecord(skill);
+                bool recordPresentBeforeDeletion = skillPageObject.IsSkillRecordPresent(skill);
 
-//            EducationConfig initialeducation = createData.First();
-//            EducationConfig education = testData.First();
-
-//            educationPageObject.CreateEducationRecord(initialeducation);
-//            AssertionHelpers.AssertToolTipMessage(educationPageObject, initialeducation.AssertionMessage);
-
-//            educationPageObject.CreateEducationRecord(education);
-//            AssertionHelpers.AssertToolTipMessage(educationPageObject, education.AssertionMessage);
-//            educationPageObject.CancelButton.Click();
-//            Thread.Sleep(1000);
-//            int rowCount = educationPageObject.RowCount();
-//            Assert.That(educationPageObject.RowCount(), Is.EqualTo(rowCount));
-
-//            educationPageObject.DeleteLastEducationRecords();
-
-//        }
+                if (recordPresentBeforeDeletion)
+                {
+                    skillPageObject.DeleteLastSkillRecord();
+                    Thread.Sleep(1000);
+                    AssertionHelpers.AssertToolTipMessage(skillPageObject, skill.AssertionMessage);
+                    bool recordPresent = skillPageObject.IsSkillRecordPresent(skill);
+                    Assert.That(recordPresent, Is.False);
+                }
+            }
+        }
 
 
-//        [Test, Order(6), Description("This test edits education record with duplicate data")]
-//        public void TestEditEducationRecordWithDuplicateData()
-//        {
-//            List<EducationConfig> createData = EducationConfig.LoadCreateEducationWithValidData();
-//            List<EducationConfig> editData = EducationConfig.LoadEditEducationWithDuplicateData();
+        [Test, Order(4), Description("This test add skill record with null data")]
+        public void TestCreateSkillRecordWithNullData()
+        {
+            List<SkillModel> testData = SkillConfig.LoadCreateSkillWithNullData();
 
-//            EducationConfig initialeducation = createData.First();
-//            EducationConfig editEducation = editData.First();
-
-//            educationPageObject.CreateEducationRecord(initialeducation);
-//            AssertionHelpers.AssertToolTipMessage(educationPageObject, initialeducation.AssertionMessage);
-
-//            educationPageObject.SelectEducationRecord(initialeducation);
-//            educationPageObject.EditEducationRecord(editEducation);
-//            AssertionHelpers.AssertToolTipMessage(educationPageObject, editEducation.AssertionMessage);
-//            Thread.Sleep(3000);
-//            educationPageObject.CancelButton.Click();
-//            Thread.Sleep(1000);
-//            int rowCount = educationPageObject.RowCount();
-//            Assert.That(educationPageObject.RowCount(), Is.EqualTo(rowCount));
-
-//            educationPageObject.DeleteLastEducationRecords();
-
-//        }
+            foreach (var skill in testData)
+            {
+                skillPageObject.CreateSkillRecord(skill);
+                bool recordPresent = skillPageObject.IsSkillRecordPresent(skill);
+                Assert.That(recordPresent, Is.False);
+                skillPageObject.CancelButton.Click();
+            }
+        }
 
 
-//        [Test, Order(7), Description("This test edits education record with null data")]
-//        public void TestEditEducationRecordWithNullData()
-//        {
-//            List<EducationConfig> createData = EducationConfig.LoadCreateEducationWithValidData();
-//            List<EducationConfig> editData = EducationConfig.LoadEditEducationWithNullData();
+        [Test, Order(5), Description("This test add skill record with Duplicate data")]
+        public void TestCreateSkillRecordWithDuplicateData()
+        {
+            List<SkillModel> createData = SkillConfig.LoadCreateSkillWithValidData();
+            List<SkillModel> testData = SkillConfig.LoadCreateSkillWithDuplicateData();
 
-//            EducationConfig initialeducation = createData.First();
-//            EducationConfig editEducation = editData.First();
+            SkillModel initialSkill = createData.First();
+            SkillModel skill = testData.First();
 
-//            educationPageObject.CreateEducationRecord(initialeducation);
-//            AssertionHelpers.AssertToolTipMessage(educationPageObject, initialeducation.AssertionMessage);
+            skillPageObject.CreateSkillRecord(initialSkill);
+            Thread.Sleep(2000);
+            AssertionHelpers.AssertToolTipMessage(skillPageObject, initialSkill.AssertionMessage);
+
+            skillPageObject.CreateSkillRecord(skill);
+            Thread.Sleep(2000);
+            AssertionHelpers.AssertToolTipMessage(skillPageObject, skill.AssertionMessage);
+            int rowCount = skillPageObject.RowCount();
+            Assert.That(skillPageObject.RowCount(), Is.EqualTo(rowCount));
+            skillPageObject.CancelButton.Click();
+
+            skillPageObject.DeleteLastSkillRecord();
+        }
 
 
-//            educationPageObject.SelectEducationRecord(initialeducation);
-//            educationPageObject.EditEducationRecord(editEducation);
-//            AssertionHelpers.AssertToolTipMessage(educationPageObject, editEducation.AssertionMessage);
+        [Test, Order(6), Description("This test edits skill record with duplicate data")]
+        public void TestEditSkillRecordWithDuplicateData()
+        {
+            List<SkillModel> createData = SkillConfig.LoadCreateSkillWithValidData();
+            List<SkillModel> editData = SkillConfig.LoadEditSkillWithDuplicateData();
 
-//            //educationPageObject.CancelButton.Click();
-//            //Thread.Sleep(1000);
-//            bool recordPresent = educationPageObject.IsEducationRecordPresent(editEducation);
-//            Assert.That(recordPresent, Is.False);
+            SkillModel initialSkill = createData.First();
+            SkillModel editSkill = editData.First();
 
-//            Console.WriteLine($"Record presence after edit: {recordPresent}");
+            skillPageObject.CreateSkillRecord(initialSkill);
+            Thread.Sleep(1000);
+            AssertionHelpers.AssertToolTipMessage(skillPageObject, initialSkill.AssertionMessage);
 
-//            educationPageObject.DeleteLastEducationRecords();
+            skillPageObject.SelectSkillRecord(initialSkill);
+            skillPageObject.EditSkillRecord(editSkill);
+            Thread.Sleep(1000);
+            AssertionHelpers.AssertToolTipMessage(skillPageObject, editSkill.AssertionMessage);
 
-//        }
+            skillPageObject.CancelButton.Click();
 
-//    }
-//}
+            int rowCount = skillPageObject.RowCount();
+            Assert.That(skillPageObject.RowCount(), Is.EqualTo(rowCount));
+
+            skillPageObject.DeleteLastSkillRecord();
+
+        }
+
+
+        [Test, Order(7), Description("This test edits skill record with null data")]
+        public void TestEditSkillRecordWithNullData()
+        {
+            List<SkillModel> createData = SkillConfig.LoadCreateSkillWithValidData();
+            List<SkillModel> editData = SkillConfig.LoadEditSkillWithNullData();
+
+            SkillModel initialSkill = createData.First();
+            SkillModel editSkill = editData.First();
+
+            skillPageObject.CreateSkillRecord(initialSkill);
+            Thread.Sleep(1000);
+            AssertionHelpers.AssertToolTipMessage(skillPageObject, initialSkill.AssertionMessage);
+
+            skillPageObject.SelectSkillRecord(initialSkill);
+            skillPageObject.EditSkillRecord(editSkill);
+            Thread.Sleep(1000);
+            AssertionHelpers.AssertToolTipMessage(skillPageObject, editSkill.AssertionMessage);
+
+            skillPageObject.CancelButton.Click();
+
+            bool recordPresent = skillPageObject.IsSkillRecordPresent(editSkill);
+            Assert.That(recordPresent, Is.False);
+
+            skillPageObject.DeleteLastSkillRecord();
+
+        }
+
+    }
+}

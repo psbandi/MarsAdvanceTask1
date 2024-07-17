@@ -1,7 +1,9 @@
-﻿using MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewComponent;
+﻿using MarsAdvancedTaskNUnitPart1.Models.LoginModel;
+using MarsAdvancedTaskNUnitPart1.PageObject.Components.LoginPage;
+using MarsAdvancedTaskNUnitPart1.PageObject.Components.ProfileOverviewComponent;
 using MarsAdvancedTaskNUnitPart1.Utilities;
 using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader;
-using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.ProfileOverviewComponent;
+using MarsAdvancedTaskNUnitPart1.Utilities.JsonReader.Login;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
@@ -16,8 +18,8 @@ namespace MarsAdvancedTaskNUnitPart1.Tests
         protected CommonDriver driverSetup;
         protected LoginPage loginPageObject;
         protected LanguagePage languagePageObject;
-        //protected SkillsPage skillPageObject;
-        protected List<LoginConfig> loginConfig;
+        protected SkillPage skillPageObject;
+        protected List<LoginModel> loginModel;
         
         // Called once prior to executing any of the tests in a fixture
         [OneTimeSetUp]
@@ -33,13 +35,13 @@ namespace MarsAdvancedTaskNUnitPart1.Tests
             // Initialize the page objects
             loginPageObject = new LoginPage(driver);
             languagePageObject = new LanguagePage(driver);
-            //skillPageObject = new SkillsPage(driver);
+            skillPageObject = new SkillPage(driver);
 
             // Perform login
-            loginConfig = LoginConfig.LoadConfig();
+            loginModel = LoginConfig.LoadConfig();
             loginPageObject.ClickSignIn();
-            //Thread.Sleep(1000);
-            loginPageObject.ValidLoginSteps(loginConfig[0].EmailAddress, loginConfig[0].Password);
+            loginPageObject.ValidLoginSteps(loginModel[0]);
+            //Assertions.AssertionHelpers.AssertLogin(loginPageObject, loginModel[0].Username);
         }
 
         public IWebDriver GetDriver()

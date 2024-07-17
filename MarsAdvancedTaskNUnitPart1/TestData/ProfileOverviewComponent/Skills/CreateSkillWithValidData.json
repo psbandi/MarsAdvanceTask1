@@ -1,0 +1,22 @@
+﻿[
+  {
+    "Skill": "SpecFlow",
+    "Level": "Beginner",
+    "AssertionMessage": "SpecFlow has been added to your skills"
+  },
+  {
+    "Skill": "C#",
+    "Level": "Intermediate",
+    "AssertionMessage": "C# has been added to your skills"
+  },
+  {
+    "Skill": "Java",
+    "Level": "Beginner",
+    "AssertionMessage": "Java has been added to your skills"
+  },
+  {
+    "Skill": "@$#1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789",
+    "Level": "Expert",
+    "AssertionMessage": "@$#1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789 has been added to your skills"
+  }
+]
